@@ -1,4 +1,7 @@
 # Marionette-AutocompleteInputView
+
+A simple autocomplete as a Marionette View. 
+
 ## Usage example:
 
 * JavaScript: 
