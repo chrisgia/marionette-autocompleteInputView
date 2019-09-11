@@ -2,6 +2,9 @@ import { View } from 'backbone.marionette';
 import tpl from './AutocompleteInputView.html';
 import './AutocompleteInputView.scss';
 
+// for IE11 fetch support
+import "isomorphic-fetch";
+
 export default View.extend({
   template: tpl,
 
@@ -62,8 +65,9 @@ export default View.extend({
   },
 
   async onInputFocusin() {
+    // saves the previously selected option
+    this.inputValTemp = this.getUI('input').val();
     // displays loading text before showing results list
-    let inputValTemp = this.getUI('input').val();
     this.getUI('input').css('font-style', 'italic');
     this.getUI('input').val(this.model.get('texts').loadingData);
     // prevent user from typing while loading text is shown
@@ -76,9 +80,9 @@ export default View.extend({
 
     // sets input field back to initial value and style
     this.getUI('input').css('font-style', 'normal');
-    this.getUI('input').val(inputValTemp);
+    this.getUI('input').val(this.inputValTemp);
     // show results select box
-    this.getUI('results')[0].classList.replace('d-none', 'd-block');
+    this.getUI('results')[0].className = this.getUI('results')[0].className.replace('d-none', 'd-block');
     // revert user typing prevention
     this.getUI('input').unbind("keypress");
     // call the function which filters out the data with the users search input
@@ -90,7 +94,9 @@ export default View.extend({
     if (this.getUI('autocompleteInputViewContainer')[0].contains(event.relatedTarget)) {
       return;
     }
-    this.getUI('results')[0].classList.replace('d-block', 'd-none');
+    // íf the user didn't select any option, set the input's value back to the previously selected option
+    this.getUI('input').val(this.inputValTemp);
+    this.getUI('results')[0].className = this.getUI('results')[0].className.replace('d-block', 'd-none');
   },
 
   onClearInputClick() {
