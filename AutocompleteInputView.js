@@ -45,11 +45,12 @@ export default View.extend({
     let regex = new RegExp(inputVal, "g");
     let filteredResults = this.model.get('data').filter(element => element.toLowerCase().match(regex));
 
+    let disabled = '';
     // if there are no results, the custom "no results" text is output
-    if(filteredResults.length === 0) { filteredResults.push(this.model.get('texts').noResults); }
+    if(filteredResults.length === 0) { filteredResults.push(this.model.get('texts').noResults); disabled = 'disabled' }
 
     for(let i = 0; i < this.model.get('resultsLimit'); i++){
-      if(filteredResults[i]) { this.getUI('results').append(`<option value="${filteredResults[i]}">${filteredResults[i]}</option>`); } else { break; }
+      if(filteredResults[i]) { this.getUI('results').append(`<option value="${filteredResults[i]}" ${disabled}>${filteredResults[i]}</option>`); } else { break; }
     }
 
     // set the size of the select box
