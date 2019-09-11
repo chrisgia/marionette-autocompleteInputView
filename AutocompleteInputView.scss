@@ -1,32 +1,29 @@
-.autocompleteInputView {
-  input {
-    // Avoid use typing under the clear button.
-    padding-right: 38px !important;
-  }
+input {
+  /* Avoid use typing under the clear button. */
+  padding-right: 38px !important;
+}
 
-  .input-group-btn {
-    position: relative;
-    // This avoid the "clear" button being hidden while the input has focus on.
-    z-index: 1000;
-  }
+.input-group-btn {
+  position: relative;
+  /* This avoid the "clear" button being hidden while
+    the input has focus on. */
+  z-index: 1000;
+}
 
-  .input-group-btn button.btn {
-    position: absolute;
-    right: 0px;
-    background-color: transparent;
-  }
+.input-group-btn button.btn {
+ position: absolute;
+ right: 0px;
+ background-color: transparent;
+}
 
-  // This avoid the bad effect when clicking the button. 
-  .input-group-btn button.btn:hover,
-  .input-group-btn button.btn:active {
-    box-shadow: none;
-  }
+/* This avoid the bad effect when clicking the button. */
+.input-group-btn button.btn:hover,
+.input-group-btn button.btn:active {
+  box-shadow: none;
+}
 
-  .autocompleteResults{
-    overflow: auto;
-    height: auto;
-    border-radius: 0px;
-    border-top-style: none;
-    margin-top: -3px;
-  }
+.autocompleteResults{
+  overflow: hidden;
+  border-radius: 0px 0px 5px 5px;
+  margin-top: -3px;
 }
