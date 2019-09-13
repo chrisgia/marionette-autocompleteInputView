@@ -2,7 +2,7 @@ import { View } from 'backbone.marionette';
 import tpl from './AutocompleteInputView.html';
 import './AutocompleteInputView.scss';
 
-// for IE11 fetch support
+// for IE11 support
 import "isomorphic-fetch";
 
 export default View.extend({
@@ -35,6 +35,7 @@ export default View.extend({
   onOptionSelection(e){
     // set value of the selected option
     let value = this.getUI('results').find('option:selected')[0].value;
+    this.inputValTemp = value;
     this.getUI('input').val(value);
     // trigger event when option is selected in case additional stuff needs to be done
     this.channel.trigger('autocompleteInput:selected', { inputId: this.model.get('id'), value});
@@ -65,9 +66,8 @@ export default View.extend({
   },
 
   async onInputFocusin() {
-    // saves the previously selected option
-    this.inputValTemp = this.getUI('input').val();
     // displays loading text before showing results list
+    this.inputValTemp = this.getUI('input').val();
     this.getUI('input').css('font-style', 'italic');
     this.getUI('input').val(this.model.get('texts').loadingData);
     // prevent user from typing while loading text is shown
@@ -94,9 +94,8 @@ export default View.extend({
     if (this.getUI('autocompleteInputViewContainer')[0].contains(event.relatedTarget)) {
       return;
     }
-    // íf the user didn't select any option, set the input's value back to the previously selected option
-    this.getUI('input').val(this.inputValTemp);
     this.getUI('results')[0].className = this.getUI('results')[0].className.replace('d-block', 'd-none');
+    this.getUI('input').val(this.inputValTemp);
   },
 
   onClearInputClick() {
