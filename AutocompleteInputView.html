@@ -1,10 +1,10 @@
 <div class="form-group autocompleteInputView">
-  <label for="<%= ctx.id %>"><%= ctx.texts.inputLabel %></label>
+  <label for="<%- ctx.id %>"><%- ctx.texts.inputLabel %></label>
   <div class="input-group">
     <% if(ctx.disabled) { %>
     <input type="text" class="form-control" disabled>
     <% } else { %>
-    <input type="text" class="form-control" id="<%= ctx.id %>" value="<%= ctx.initialValue %>">
+    <input type="text" class="form-control" id="<%- ctx.id %>" value="<%- ctx.initialValue %>">
     <% } %>
     <span class="input-group-btn">
       <button type="button" class="btn clearInput">
@@ -12,5 +12,5 @@
       </button>
     </span>
   </div>
-  <select id="<%= ctx.id %>Results" class="form-control autocompleteResults d-none" multiple><!-- Results will be shown here --></select>
+  <select id="<%- ctx.id %>Results" class="form-control autocompleteResults d-none" multiple><!-- Results will be shown here --></select>
 </div>
