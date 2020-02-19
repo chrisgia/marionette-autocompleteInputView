@@ -2,7 +2,7 @@
   <label for="<%- ctx.id %>"><%- ctx.texts.inputLabel %></label>
   <div class="input-group">
     <% if(ctx.disabled) { %>
-    <input type="text" class="form-control" disabled>
+    <input type="text" class="form-control" id="<%- ctx.id %>" value="<%- ctx.initialValue %>" disabled>
     <% } else { %>
     <input type="text" class="form-control" id="<%- ctx.id %>" value="<%- ctx.initialValue %>">
     <% } %>
