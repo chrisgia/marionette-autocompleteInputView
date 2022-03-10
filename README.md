@@ -1,6 +1,9 @@
 # Marionette-AutocompleteInputView
 
-A simple autocomplete as a Marionette View. 
+A simple, configurable autocomplete input as a Marionette View.
+This solution was tailored to a project of mine which was based on Backbone and Marionette, and had a dependency of Underscore.js, so it isn't really a "copy/paste" solution if your project is not constructed the same way. But I thought it might be useful for people stumbling across problems using other autocomplete solutions in Marionette Views. 
+
+I might compile it as a dependency sometime.
 
 ## Usage example:
 
